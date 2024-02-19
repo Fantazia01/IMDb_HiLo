@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">IMDb Hilo</string>
+    <string name="button_hall_of_fame">\Hall of Fame</string>
+    <string name="button_game">Play a game</string>
+</resources>
