@@ -1,3 +1,5 @@
+import org.codehaus.groovy.runtime.DefaultGroovyMethods.each
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -18,8 +20,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField(
+            "String",
+            "API_KEY",
+            "\"${project.findProperty("API_KEY")}\""
+        )
     }
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -38,6 +44,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -47,9 +54,14 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
+
+
 dependencies {
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("io.coil-kt:coil-compose:2.1.0")
     implementation("com.google.code.gson:gson:2.10")
     implementation("androidx.core:core-ktx:1.12.0")
